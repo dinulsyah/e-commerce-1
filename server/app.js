@@ -9,7 +9,7 @@ const port = process.env.port || 3000
 const errorHandler = require('./helpers/errorHandler')
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(`mongodb://localhost/e-commerce-${process.env.NODE_ENV}`,{ useNewUrlParser:true},(err) => {
+mongoose.connect(process.env.DB_CONNECT,{ useNewUrlParser:true},(err) => {
     if(err) console.log('database connection failed..')
     else{
         console.log('database connection established..')

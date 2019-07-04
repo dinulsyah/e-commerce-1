@@ -7,15 +7,26 @@
         <button type="button" class="btn btn-outline-dark my-2" @click="goOverview">Overview</button>
         <button type="button" class="btn btn-outline-dark my-2" @click="goTransaction">Transaction</button>
       </div>
-      <div class="col-8 my-4">
+      <div class="col-6 my-4">
         <router-view></router-view>
+      </div>
+      <div class="col-4">
+        <BarChart/>
+        <BarChart2/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import BarChart from '../components/BarChart.vue'
+import BarChart2 from '../components/BarChart2.vue'
+
 export default {
+    components:{
+      BarChart,
+      BarChart2
+    },
     methods:{
         goProduct(){
             this.$router.push('/admin/addProduct')
@@ -26,6 +37,11 @@ export default {
         goTransaction(){
             this.$router.push('/admin/transaction')
         }
+    },
+    mounted(){
+      if(!localStorage.getItem('token') && localStorage.getItem('role')!== 'admin'){
+        this.$router.push('/')
+      }
     }
 }
 </script>

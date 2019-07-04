@@ -29,7 +29,12 @@ export default {
     }
   },
   created(){
-    this.$store.dispatch('getAllProducts')
+    if(!localStorage.getItem('token')){
+      this.$router.push('/')
+    }
+    else{
+      this.$store.dispatch('getAllProducts')
+    }
   }
 };
 </script>
